@@ -27,7 +27,35 @@
 
 <body>
   <noscript>You need to enable JavaScript to run this app.</noscript>
-  <react-social-card></react-social-card>
+  <div id="microfrontend-root"></div>
+
+  <link rel="stylesheet" href="http://localhost:3001/static/css/main.e9d898b8.css">
+  <script href="http://localhost:3001/static/js/main.479a8775.js"></script>
+  <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+
+  <script type="text/javascript">
+    // These element types are defined by the above scripts
+    const webComponentsByRoute = {
+      '/react': 'react-social-card',
+      '/vue': 'social-card-element',
+    };
+    const webComponentType = webComponentsByRoute[window.location.pathname];
+
+    // Having determined the right web component custom element type,
+    // we now create an instance of it and attach it to the document
+    const root = document.getElementById('microfrontend-root');
+    const webComponent = document.createElement(webComponentType);
+    root.replaceChildren(webComponent);
+  </script>
 </body>
 
 </html>
